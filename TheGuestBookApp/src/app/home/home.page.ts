@@ -69,6 +69,13 @@ export class HomePage {
     }
 
     async confirmSucces() {
+        this.firstName = '';
+        this.lastName = '';
+        this.email = '';
+        this.phone = '';
+        this.message = '';
+        this.agree = false;
+
         const alert = await this.alertController.create({
             header: 'Thank you',
             message: 'Thank you for signing up',
