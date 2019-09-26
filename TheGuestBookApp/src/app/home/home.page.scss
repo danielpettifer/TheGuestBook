@@ -1,0 +1,76 @@
+.flex {
+    display:flex;
+    min-height: 100vh;
+}
+
+.leftBlock {
+    position: relative;
+    width: 25%;
+    flex: 0 0 auto;
+    background-image: url('src/assets/images/paint.png');
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    img {
+            border: 36px #000000 solid;
+    }
+}
+.rightBlock {
+    padding: 45px 100px 100px 122px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    color: #000;
+    overflow: scroll;
+    height: 100vh;
+}
+
+h1 {
+    margin-bottom: -14px;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    color: #000;
+    font-size: 72px;
+    line-height: 72px;
+    margin-left: 10px;
+}
+
+h2 {
+    font-size: 25px;
+    margin-top: 34px;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    line-height: 31px;
+    margin-left: 15px;
+    margin-bottom: 62px;
+}
+
+.signUp {
+    margin-top: 50px;
+}
+
+.item-toggle {
+    background-color: white;
+    border: none;
+    color: rgb(50, 50, 50);
+    padding: 0;
+    }
+    .item-input {
+    background-color: rgb(224, 233, 238);
+    border-color: rgb(255, 255, 255);
+    border-width: 1px !important;
+    border-style: solid;
+    color: rgb(50, 50, 50);
+    padding: 0;
+    border-radius: 5px;
+        margin-bottom: 16px;
+}
+    .item-select {
+    background-color: white;
+    border-color: darkgray;
+    border-width: 1px !important;
+    border-style: solid;
+    color: rgb(50, 50, 50);
+    padding: 0;
+    border-radius: 10px;
+    }
