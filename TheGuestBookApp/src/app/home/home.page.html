@@ -17,35 +17,25 @@
             <!-- <img src="assets/images/logo.png" /> -->
             <form #myForm="ngForm">
                 <!-- <p>Is "myForm" valid? {{myForm.valid}}</p> -->
-                <ion-item [ngClass]="errors.firstName ? 'input-error' : ''">
+                <ion-item>
                     <ion-label position="floating">First Name</ion-label>
-                    <ion-input [(ngModel)]="firstName" name="firstName"
-                               (ionChange)="onInputChange('firstName')"></ion-input>
-                    <div *ngIf="errors.firstName">{{errors.firstName}}</div>
+                    <ion-input [(ngModel)]="firstName" name="firstName" required></ion-input>
                 </ion-item>
-                <ion-item [ngClass]="errors.lastName ? 'input-error' : ''">
+                <ion-item>
                     <ion-label position="floating">Last Name</ion-label>
-                    <ion-input [(ngModel)]="lastName" name="lastName"
-                               (ionChange)="onInputChange('lastName')"></ion-input>
-                    <div *ngIf="errors.lastName">{{errors.lastName}}</div>
+                    <ion-input [(ngModel)]="lastName" name="lastName" required></ion-input>
                 </ion-item>
-                <ion-item [ngClass]="errors.email ? 'input-error' : ''">
+                <ion-item>
                     <ion-label position="floating">Email address</ion-label>
-                    <ion-input type="email" [(ngModel)]="email" name="email"
-                               (ionChange)="onInputChange('email')"></ion-input>
-                    <div *ngIf="errors.email">{{errors.email}}</div>
+                    <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
                 </ion-item>
-                <ion-item [ngClass]="errors.phone ? 'input-error' : ''">
+                <ion-item>
                     <ion-label position="floating">Phone number</ion-label>
-                    <ion-input type="tel" [(ngModel)]="phone" name="phone"
-                               (ionChange)="onInputChange('phone')"></ion-input>
-                    <div *ngIf="errors.phone">{{errors.phone}}</div>
+                    <ion-input type="tel" [(ngModel)]="phone" name="phone"></ion-input>
                 </ion-item>
-                <ion-item [ngClass]="errors.message ? 'input-error' : ''">
+                <ion-item>
                     <ion-label position="floating">Message</ion-label>
-                    <ion-input type="text" [(ngModel)]="message" name="message"
-                               (ionChange)="onInputChange('message')"></ion-input>
-                    <div *ngIf="errors.message">{{errors.message}}</div>
+                    <ion-input type="text" [(ngModel)]="message" name="message"></ion-input>
                 </ion-item>
                 <!-- sign up section -->
                 <div class="signUp">
@@ -54,20 +44,19 @@
                     </ion-button>
 
                     <ion-item>
+                        {{agree}}
                         <ion-label>I understand how you will use my data</ion-label>
-                        <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
+                        <ion-checkbox color="primary" checked slot="start" name="agree"
+                                      [(ngModel)]="agree"></ion-checkbox>
                     </ion-item>
 
                     <br/>
                     <br/>
                     <br/>
                     <br/>
-                    <ion-button color="primary" (click)="handleSubmit()">
+                    <ion-button color="primary" (click)="onSubmit()">
                         <ion-ripple-effect></ion-ripple-effect>
                         Sign me up. I'd love to hear more!
-                    </ion-button>
-                    <ion-button (click)="presentAlertConfirm()">
-                        test
                     </ion-button>
                 </div>
                 <!-- <pre>{{myForm.value | json}}</pre> -->

@@ -16,13 +16,8 @@ export class HomePage {
     email: string;
     phone: string;
     message: string;
-    errors = {
-        firstName: null,
-        lastName: null,
-        email: null,
-        phone: null,
-        message: null,
-    };
+    agree: boolean;
+    errors = [];
 
     constructor(
         public alertController: AlertController,
@@ -39,76 +34,52 @@ export class HomePage {
         await modal.present();
     }
 
-    async presentAlertConfirm() {
+    onSubmit() {
+        this.errors = [];
+
+        if (!this.firstName) {
+            this.errors.push('Please type your first name');
+        }
+        if (!this.lastName) {
+            this.errors.push('Please type your last name');
+        }
+        if (!this.email) {
+            this.errors.push('Please type your email address');
+        }
+        if (!this.agree) {
+            this.errors.push('Please confirm you agree with our data usage');
+        }
+
+        if (this.errors.length === 0) {
+            this.submitData();
+        } else {
+            this.invalidData();
+        }
+    }
+
+    async invalidData() {
         const alert = await this.alertController.create({
-            header: 'Confirm!',
-            message: 'Message <strong>text</strong>!!!',
-            buttons: [
-                {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    cssClass: 'secondary',
-                    handler: (blah) => {
-                        console.log('Confirm Cancel: blah');
-                    }
-                }, {
-                    text: 'Okay',
-                    handler: () => {
-                        console.log('Confirm Okay');
-
-                        if (!this.firstName) {
-                            this.errors.firstName = 'Please type your first name';
-                        } else {
-                            this.errors.firstName = null;
-                        }
-
-                        if (!this.lastName) {
-                            this.errors.lastName = 'Please type your last name';
-                        } else {
-                            this.errors.lastName = null;
-                        }
-
-                        if (!this.email) {
-                            this.errors.email = 'Please type your email address';
-                        } else {
-                            this.errors.email = null;
-                        }
-
-                        if (!this.phone) {
-                            this.errors.phone = 'Please type your phone number';
-                        } else {
-                            this.errors.phone = null;
-                        }
-
-                        if (!this.message) {
-                            this.errors.message = 'Please type your message';
-                        } else {
-                            this.errors.message = null;
-                        }
-
-                        if (!this.errors.firstName &&
-                            !this.errors.lastName &&
-                            !this.errors.message &&
-                            !this.errors.phone &&
-                            !this.errors.email
-                        ) {
-                            this.handleSubmit();
-                        }
-                    }
-                }
-            ]
+            header: 'Please correct the following errors',
+            message: this.errors.join('<br />'),
+            buttons: [{
+                text: 'Okay',
+            }]
         });
-
         await alert.present();
-        const result = await alert.onDidDismiss();
-        console.log({result});
     }
 
-    onInputChange(field) {
-        this.errors[field] = null;
+    async confirmSucces() {
+        const alert = await this.alertController.create({
+            header: 'Thank you',
+            message: 'Thank you for signing up',
+            buttons: [{
+                text: 'Okay',
+            }]
+        });
+        await alert.present();
     }
 
-    handleSubmit() {
+    submitData() {
         console.log(this.http);
         this.http
             .post('http://inoveb.co.uk/guest-book/in.php', {
@@ -120,10 +91,10 @@ export class HomePage {
             })
 
             .subscribe(data => {
+                this.confirmSucces();
                 // console.log(data.status);
                 console.log({data}); // data received by server
                 // console.log(data.headers);
             });
-
     }
 }
