@@ -7,62 +7,72 @@
 </ion-header> -->
 
 <ion-content no-bounce has-bouncing="false" forceOverscroll="false">
-  <div class="flex">
-    <div class="leftBlock">
-      <img class="bbfa" src="assets/images/bbfa.jpg" />
-    </div>
-    <div class="rightBlock">
-      <h1>Guest book</h1>
-      <h2>Stay up to date with Ben Brown Fine Arts</h2>
-    <!-- <img src="assets/images/logo.png" /> -->
-<form #myForm="ngForm">
-    <!-- <p>Is "myForm" valid? {{myForm.valid}}</p> -->
-    <ion-item>
-      <ion-label position="floating">First Name</ion-label>
-      <ion-input [(ngModel)]="firstName" name="firstName" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Last Name</ion-label>
-      <ion-input [(ngModel)]="lastName" name="lastName" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Email address</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Phone number</ion-label>
-      <ion-input type="tel" [(ngModel)]="phone" name="phone"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Message</ion-label>
-      <ion-input type="text" [(ngModel)]="message" name="message"></ion-input>
-    </ion-item>
-    <!-- sign up section -->
-    <div class="signUp">
-        <ion-button color="primary" fill="clear" (click)="presentModal()">
-            Read about how we use your data
-          </ion-button>
+    <div class="flex">
+        <div class="leftBlock">
+            <img alt="" class="bbfa" src="/assets/images/bbfa.jpg"/>
+        </div>
+        <div class="rightBlock">
+            <h1>Guest book</h1>
+            <h2>Stay up to date with Ben Brown Fine Arts</h2>
+            <!-- <img src="assets/images/logo.png" /> -->
+            <form #myForm="ngForm">
+                <!-- <p>Is "myForm" valid? {{myForm.valid}}</p> -->
+                <ion-item [ngClass]="errors.firstName ? 'input-error' : ''">
+                    <ion-label position="floating">First Name</ion-label>
+                    <ion-input [(ngModel)]="firstName" name="firstName"
+                               (ionChange)="onInputChange('firstName')"></ion-input>
+                    <div *ngIf="errors.firstName">{{errors.firstName}}</div>
+                </ion-item>
+                <ion-item [ngClass]="errors.lastName ? 'input-error' : ''">
+                    <ion-label position="floating">Last Name</ion-label>
+                    <ion-input [(ngModel)]="lastName" name="lastName"
+                               (ionChange)="onInputChange('lastName')"></ion-input>
+                    <div *ngIf="errors.lastName">{{errors.lastName}}</div>
+                </ion-item>
+                <ion-item [ngClass]="errors.email ? 'input-error' : ''">
+                    <ion-label position="floating">Email address</ion-label>
+                    <ion-input type="email" [(ngModel)]="email" name="email"
+                               (ionChange)="onInputChange('email')"></ion-input>
+                    <div *ngIf="errors.email">{{errors.email}}</div>
+                </ion-item>
+                <ion-item [ngClass]="errors.phone ? 'input-error' : ''">
+                    <ion-label position="floating">Phone number</ion-label>
+                    <ion-input type="tel" [(ngModel)]="phone" name="phone"
+                               (ionChange)="onInputChange('phone')"></ion-input>
+                    <div *ngIf="errors.phone">{{errors.phone}}</div>
+                </ion-item>
+                <ion-item [ngClass]="errors.message ? 'input-error' : ''">
+                    <ion-label position="floating">Message</ion-label>
+                    <ion-input type="text" [(ngModel)]="message" name="message"
+                               (ionChange)="onInputChange('message')"></ion-input>
+                    <div *ngIf="errors.message">{{errors.message}}</div>
+                </ion-item>
+                <!-- sign up section -->
+                <div class="signUp">
+                    <ion-button color="primary" fill="clear" (click)="presentModal()">
+                        Read about how we use your data
+                    </ion-button>
 
-      <ion-item>
-        <ion-label>I understand how you will use my data</ion-label>
-        <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
-      </ion-item>
-     
-      <br />
-      <br />
-      <br />
-      <br />
-      <ion-button color="primary" (click)="handleSubmit()">
-        <ion-ripple-effect></ion-ripple-effect>
-        Sign me up. I'd love to hear more!
-      </ion-button>
-      <ion-button (click)="presentAlertConfirm()">
-        test
-      </ion-button>
-    </div>
-    <!-- <pre>{{myForm.value | json}}</pre> -->
-  </form>
-    </div>
+                    <ion-item>
+                        <ion-label>I understand how you will use my data</ion-label>
+                        <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
+                    </ion-item>
 
-  </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <ion-button color="primary" (click)="handleSubmit()">
+                        <ion-ripple-effect></ion-ripple-effect>
+                        Sign me up. I'd love to hear more!
+                    </ion-button>
+                    <ion-button (click)="presentAlertConfirm()">
+                        test
+                    </ion-button>
+                </div>
+                <!-- <pre>{{myForm.value | json}}</pre> -->
+            </form>
+        </div>
+
+    </div>
 </ion-content>
